@@ -19,11 +19,11 @@ func main(){
 	defer database.DBConn.Close()
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = ":8080"
+		port = "8080"
 		log.Printf("Defaulting to port %s", port)
 	}
 
 	router.SetupRoutes(app)
 
-	log.Fatal(app.Listen(port))
+	log.Fatal(app.Listen(":" + port))
 }

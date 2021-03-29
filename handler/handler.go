@@ -36,7 +36,7 @@ func PostMutant(c *fiber.Ctx) error {
 	mutant.CountMutantDna = len(isMutant)
 	mutant.Ratio = float32(len(isMutant)) * 0.1
 	db.Create(&mutant)
-	return c.Status(200).JSON(fiber.Map{"status": "success", "data": "this DNA contains mutant gene"})
+	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "this DNA contains mutant gene", "data": isMutant})
 }
 
 func GetStats(c *fiber.Ctx) error {
@@ -44,6 +44,14 @@ func GetStats(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 	db.First(&mutant, id)
+
+	return c.Status(200).JSON(fiber.Map{"status": "success", "data": mutant})
+}
+
+func GetSAlltats(c *fiber.Ctx) error {
+	var mutant []model.Mutants
+	db := database.DBConn
+	db.Find(&mutant)
 
 	return c.Status(200).JSON(fiber.Map{"status": "success", "data": mutant})
 }

@@ -11,4 +11,5 @@ func SetupRoutes(app *fiber.App) {
 
 	v1.Post("/mutant", handler.PostMutant)
 	v1.Get("/stats/:id", handler.GetStats)
+	v1.Get("/stats", handler.GetSAlltats)
 }
