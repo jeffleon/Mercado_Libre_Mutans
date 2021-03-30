@@ -10,6 +10,14 @@ para que la api rest funcione por favor ubicate en la carpeta Mercado_Libre_Muta
 `cd Mercado_Libre_Mutans/`
 * utiliza el comando go get para instalar las dependencias
   `go get ./...`
+    
+__NOTA:__ es importante que de antemano crearas una base de datos en Cloud SQL (GCP)
+* corre el cloud_sql_proxy
+  
+`./cloud_sql_proxy -instances=Connection name=tcp:5432`
+* dentro de la carpeta database agrega tus credenciales de GCP
+
+`dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s", "user", "password", "127.0.0.1:5432", "dbname")`
 * correr la api
   `go run main.go`
 
